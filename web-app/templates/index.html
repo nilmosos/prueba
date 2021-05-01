@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <title>Covid Status Estimator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+</head>
+
+<body>
+<div class="container">
+
+  <center>
+    <div style="app-header">
+      <h2>Covid Status Estimator</h2>
+    </div>
+  </center>
+
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8 pt-5">
+          <form method="POST" action="/predict">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.case.label }}</label>
+              <div class="col-sm-10">
+                {{ form.case }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.symptoms_start_date.label }}</label>
+              <div class="col-sm-10">
+                {{ form.symptoms_start_date }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.diagnosys_date.label }}</label>
+              <div class="col-sm-10">
+                {{ form.diagnosys_date }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.city.label }}</label>
+              <div class="col-sm-10">
+                {{ form.city }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.locality.label }}</label>
+              <div class="col-sm-10">
+                {{ form.locality }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.age.label }}</label>
+              <div class="col-sm-10">
+                {{ form.age }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.age_unit.label }}</label>
+              <div class="col-sm-10">
+                {{ form.age_unit }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.sex.label }}</label>
+              <div class="col-sm-10">
+                {{ form.sex }}
+              </div>      
+                        <!-- <div class="form-field ">{{ form.sex.label }} {{ form.sex }}</div>
+                        <select id="equalification" class="">
+                          <option id="selectHeader">--------- Select Gender --------------</option>
+                          <option value="male">{{form.sex.value}}</option>
+                          <option value="female">{{form.sex.value}}</option>
+                        </select> -->
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.contagion_type.label }}</label>
+              <div class="col-sm-10">
+                {{ form.contagion_type }}
+              </div>      
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{ form.current_location.label }}</label>
+              <div class="col-sm-10">
+                {{ form.current_location }}
+              </div>      
+            </div>
+            <input id="submit" style="margin-bottom: 10px;" name="submit" type="submit" onclick="startSpinner()" value="Predict">
+            
+            <br>
+          </form>
+    </div>
+    <div class="col-md-4"></div>
+
+
+  </div>
+
+
+
+
+  <div class="d-flex justify-content-center pt-5">
+    <div id="loader" style="color:black; display: none;" class="spinner-border"></div>
+  </div>
+  <div class="output-container pb-5">
+    <center>
+      <div id="output">
+        <h5 id="a">Status Covid: </h5>
+        <h3 id="b">{{ form.abc }}</h3>
+      </div>
+    </center>
+  </div>
+</div>
+
+  <script>
+
+window.onload = function exampleFunction() { 
+  
+  // var output = document.getElementById("output");
+  // output.style.display = "none"
+} 
+
+    function startSpinner() {
+      var x = document.getElementById("loader");
+      x.style.display = "block";
+      var output = document.getElementById("output");
+      output.style.display = "none"
+      setTimeout(function () {
+        var y = document.getElementById("output");
+        var x = document.getElementById("loader");
+        var a = document.getElementById("a");
+        var b = document.getElementById("b");
+        x.style.display = "none";
+        y.style.display = "block"
+        a.style.display = "block"
+        b.style.display = "block"
+      }, 3000);
+
+    }
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
